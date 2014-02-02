@@ -4,8 +4,12 @@
     height: @frameworkLogoHeight;
 }
 
+.pad-top(@amount) {
+    margin-top: @amount;
+}
+
 .pad-top {
-    margin-top: 10px;
+    .pad-top(10px);
 }
 
 .inactive{
@@ -15,4 +19,9 @@
 .todo-done {
     .inactive;
     text-decoration: line-through;
+}
+
+#deleteArchivedButton {
+    .pad-top(17px);
+    font-size: 15px;
 }

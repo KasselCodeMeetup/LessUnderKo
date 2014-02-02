@@ -40,6 +40,13 @@ function TodoList() {
         var selectedCount = _.countBy(self.entries(), function (e) { return e.isChecked();  });
         return selectedCount["true"] || 0;
     });
+    
+    self.removeChecked = function () {
+        var checked = _.filter(self.entries(), function (e) { return e.isChecked(); });
+        _.each(checked, function (e) {
+            self.entries.remove(e);
+        });
+    };
 
     function _addEntry(name, state){
         self.entries.push(new TodoListItem(name, state));

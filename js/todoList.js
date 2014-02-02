@@ -8,9 +8,19 @@ function TodoListItem(name, initialState) {
         self.isChecked(!state);
     };
     
-    self.css = ko.computed(function () {
+    self.remove = function () {
+        app.viewModel.todoList.entries.remove(self);
+        app.save();
+    }
+    
+    self.iconCss = ko.computed(function () {
         var iconClass = self.isChecked() ? "fa-check-circle-o" : "fa-circle-o";
         return "fa fa-2x " + iconClass;
+    });
+    
+    self.nameCss = ko.computed(function () {
+        var classes = self.isChecked() ? "todo-done" : "";
+        return classes;
     });
     
     self.name = ko.observable(name);
@@ -20,6 +30,7 @@ function TodoList() {
     var self = this;
     
     self.entries = ko.observableArray();
+    self.newEntryName = ko.observable();
     
     self.totalTodoCount = ko.computed(function () {
         return self.entries().length;
@@ -29,9 +40,7 @@ function TodoList() {
         var selectedCount = _.countBy(self.entries(), function (e) { return e.isChecked();  });
         return selectedCount["true"] || 0;
     });
-    
-    self.newEntryName = ko.observable();
-    
+
     function _addEntry(name, state){
         self.entries.push(new TodoListItem(name, state));
     }

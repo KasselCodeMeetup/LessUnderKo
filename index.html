@@ -27,9 +27,12 @@
                 <div data-bind="foreach: entries">
                     <div class="row">
                         <div class="col-xs-1" data-bind="click: switchChecked">
-                            <i data-bind="attr: { class: css }"></i>
+                            <i data-bind="attr: { class: iconCss }"></i>
                         </div>
-                        <div class="col-xs-11" data-bind="text: name"></div>
+                        <div class="col-xs-11">
+                            <span data-bind="text: name, click: switchChecked, attr: { class: nameCss }"></span>
+                            <button class="pull-right fa fa-trash-o" data-bind="click: remove"></button>
+                        </div>
                     </div>
                 </div>
                 <div class="pad-top">

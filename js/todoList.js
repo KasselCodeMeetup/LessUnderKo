@@ -6,8 +6,6 @@ function TodoListItem(name, initialState) {
     self.switchChecked = function () {
         var state = self.isChecked();
         self.isChecked(!state);
-        
-        app.save();
     };
     
     self.css = ko.computed(function () {
@@ -18,7 +16,7 @@ function TodoListItem(name, initialState) {
     self.name = ko.observable(name);
 }
 
-function TodoList(entries) {
+function TodoList() {
     var self = this;
     
     self.entries = ko.observableArray();
@@ -38,18 +36,8 @@ function TodoList(entries) {
         self.entries.push(new TodoListItem(name, state));
     }
     
-    function _init(){
-        if(entries){
-            _.each(entries, function (e) { _addEntry(e.name, e.isChecked) });
-        }
-    }
-    
     self.addNewEntry = function () {
         _addEntry(self.newEntryName());
         self.newEntryName('');
-        
-        app.save();
     };
-    
-    _init();
 }

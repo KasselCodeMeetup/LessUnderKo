@@ -1,35 +1,13 @@
-function ViewModel(model) {
+function ViewModel() {
     var self = this;
-    
-    model = model || {};
-    
-    self.todoList = new TodoList(model.entries);
+
+    self.todoList = new TodoList();
 }
 
 function App() {
     var self = this;
 
-    self.load = function () {
-        var state = localStorage.getItem("state");
-        var model = JSON.parse(state);
-        return new ViewModel(model);
-    };
-    
-    self.save = function () {
-        
-        var state = {
-            entries: _.map(self.viewModel.todoList.entries(), function (e) {
-                    return {
-                        name: e.name(),
-                        isChecked: e.isChecked()
-                    };
-            })
-        }
-        
-        localStorage.setItem("state", JSON.stringify(state));
-    };
-
-    self.viewModel = self.load();
+    self.viewModel = new ViewModel();
     ko.applyBindings(self.viewModel);
 }
 

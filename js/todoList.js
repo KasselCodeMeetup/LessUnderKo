@@ -46,6 +46,8 @@ function TodoList() {
         _.each(checked, function (e) {
             self.entries.remove(e);
         });
+        
+        app.save();
     };
 
     function _addEntry(name, state){

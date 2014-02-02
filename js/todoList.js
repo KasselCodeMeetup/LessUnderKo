@@ -10,9 +10,14 @@ function TodoListItem(name, initialState) {
         app.save();
     };
     
-    self.css = ko.computed(function () {
+    self.iconCss = ko.computed(function () {
         var iconClass = self.isChecked() ? "fa-check-circle-o" : "fa-circle-o";
         return "fa fa-2x " + iconClass;
+    });
+    
+    self.nameCss = ko.computed(function () {
+        var classes = self.isChecked() ? "todo-done" : "";
+        return classes;
     });
     
     self.name = ko.observable(name);

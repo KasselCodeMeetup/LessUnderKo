@@ -23,6 +23,7 @@
                 (<span data-bind="text: selectedTodoCount"></span>
                 /
                 <span data-bind="text: totalTodoCount"></span>)
+                <button id="deleteArchivedButton" class="pull-right" data-bind="click: removeChecked">Erledigte <span class="fa fa-trash-o"></span></button>
                 </h2>
                 <div data-bind="foreach: entries">
                     <div class="row">
